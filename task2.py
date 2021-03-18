@@ -64,7 +64,6 @@ def drop_adjectives(data, morph):
 
 
 def get_data(filename=None, only_nouns=False):
-
 	out_message = ""
 	if not os.path.exists(filename):
 		out_message = "No such file. "
@@ -74,7 +73,6 @@ def get_data(filename=None, only_nouns=False):
 
 	if os.path.exists(filename):
 		out_message = f"Getting data from {filename}\n"
-		print(out_message)
 		with open(filename, 'r') as file:
 			data = file.read().split(', ')
 	else:
@@ -88,7 +86,9 @@ def get_data(filename=None, only_nouns=False):
 		morph = pymorphy2.MorphAnalyzer()
 		out_data = set()
 		for animal in data:
-			out_data.add(drop_adjectives(animal, morph))
+			test = drop_adjectives(animal, morph)
+			print(f"ANIMAL: {animal}, MORPH: {test}")
+			out_data.add(test)
 		return sorted(list(out_data))
 
 	return data
@@ -107,7 +107,7 @@ def get_count_by_letter(animals):
 
 
 if __name__ == "__main__":
-	data = get_data("animals.txt", only_nouns=True)
+	data = get_data("animals.txt", only_nouns=False)  # Установить only_nouns=True для удаления прилагательных
 	print(get_count_by_letter(data))
 
 
