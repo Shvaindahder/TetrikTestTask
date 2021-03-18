@@ -107,7 +107,7 @@ def get_count_by_letter(animals):
 
 
 if __name__ == "__main__":
-	data = get_data("animals.txt", drop_adjectives=True)
+	data = get_data("animals.txt", only_nouns=True)
 	print(get_count_by_letter(data))
 
 
