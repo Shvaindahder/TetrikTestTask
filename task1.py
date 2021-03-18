@@ -48,12 +48,29 @@ def test_task():
 
 if __name__ == "__main__":
 	test_strings = [
-		"1111110000",
-		"1000",
-		"11111111111100",
-		"1",
-		"0"
+	    ("111111111111111111111111100000000", 25),
+		("1111110000", 6),
+		("1000", 1),
+		("11111111111100", 12),
+		("1", -1),
+		("0", 0)
 	]
 
 	for string in test_strings:
-		print(f"String\t: {string}\nLinear\t: {task_linear(string)}\nLog\t: {task_log(string)}", end='\n\n')
+		print(f"String\t: {string[0]}")
+		try:
+			assert task_linear(string[0]) == string[1], f"Linear solver error. Excepted {string[1]}, actualy {task_linear(string[0])}"
+		except AssertionError as err:
+			print(err)
+		else:
+			print("Linear\t: OK")
+
+		try:
+			assert task_log(string[0]) == string[1], f"Log solver error. Excepted {string[1]}, actualy {task_log(string[0])}"
+		except AssertionError as err:
+			print(err)
+		else:
+			print("Log\t: OK")
+
+		print()
+
